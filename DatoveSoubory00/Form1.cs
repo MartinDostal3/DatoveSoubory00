@@ -75,5 +75,10 @@ namespace DatoveSoubory00
             fs.Close();
             bw.Close();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            //všechna zaporna cisla vynasob -1
+        }
     }
 }
