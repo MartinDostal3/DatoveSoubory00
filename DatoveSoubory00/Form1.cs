@@ -54,15 +54,18 @@ namespace DatoveSoubory00
             BinaryWriter bw = new BinaryWriter(fs);
             while(br.BaseStream.Position < br.BaseStream.Length)
             {
-                // int pos = (int) br.BaseStream.Position; 
+                 int pos = (int) br.BaseStream.Position; 
 
                 int x = br.ReadInt32();  //V souboru jsme za prectenym cislem
                 if(x%2 != 0)
                 {
                     x *= 2;
 
-                    bw.BaseStream.Position -= 4;
-
+                    // bw.BaseStream.Position -= 4;
+                    //bw.BaseStream.Position -= sizeof(Int32);
+                    // bw.Seek(-4, SeekOrigin.Current);
+                    //bw.Seek(-sizeof(Int32), SeekOrigin.Current);
+                    bw.Seek(pos, SeekOrigin.Begin); //+int pos
 
 
                     bw.Write(x);
