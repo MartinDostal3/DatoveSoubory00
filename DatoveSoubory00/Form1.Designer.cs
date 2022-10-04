@@ -102,7 +102,7 @@
             this.listBox2.FormattingEnabled = true;
             this.listBox2.Location = new System.Drawing.Point(387, 67);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(68, 134);
+            this.listBox2.Size = new System.Drawing.Size(125, 134);
             this.listBox2.TabIndex = 6;
             // 
             // button4
@@ -113,6 +113,7 @@
             this.button4.TabIndex = 7;
             this.button4.Text = "vytvoř soubor n náhodných reálných čísel";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -122,6 +123,7 @@
             this.button5.TabIndex = 8;
             this.button5.Text = "vypiš soubor reálných čísel";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 

@@ -79,6 +79,63 @@ namespace DatoveSoubory00
         private void button6_Click(object sender, EventArgs e)
         {
             //všechna zaporna cisla vynasob -1
+           
+            FileStream fs = new FileStream("realnaCisla.dat", FileMode.Open, FileAccess.ReadWrite);
+            BinaryReader br = new BinaryReader(fs);
+            BinaryWriter bw = new BinaryWriter(fs);
+            while (br.BaseStream.Position < br.BaseStream.Length)
+            {
+               int pos = (int)br.BaseStream.Position;
+                double x = br.ReadDouble();  //V souboru jsme za prectenym cislem
+                if (x < 0)
+                {
+                  
+                    x *= -1;
+                    //bw.BaseStream.Position -= sizeof(Double);
+                    //bw.BaseStream.Position -= 8;
+                    //bw.Seek(-8, SeekOrigin.Current);
+                    //bw.Seek(-sizeof(Double), SeekOrigin.Current);
+                    bw.Seek(pos, SeekOrigin.Begin);
+
+                    bw.Write(x);
+                    
+                }
+            }
+            br.Close();
+            fs.Close();
+            bw.Close();
+
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            int n = int.Parse(textBox2.Text);
+            FileStream fs = new FileStream("realnaCisla.dat", FileMode.Create, FileAccess.Write);
+            BinaryWriter br = new BinaryWriter(fs);
+            for (int i = 0; i < n; i++)
+            {
+                double nahodne = -20 + (21 - (-20)) * random.NextDouble() ;
+                br.Write(nahodne);
+            }
+            fs.Close();
+            br.Close();
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            listBox2.Items.Clear();
+            FileStream fs = new FileStream("realnaCisla.dat", FileMode.Open, FileAccess.Read);
+            BinaryReader br = new BinaryReader(fs);
+            while (fs.Position < fs.Length)
+            {
+                double cislo = br.ReadDouble();
+                listBox2.Items.Add(cislo);
+            }
+            br.Close();
+            fs.Close();
         }
     }
 }
