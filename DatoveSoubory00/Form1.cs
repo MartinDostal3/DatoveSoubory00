@@ -137,5 +137,44 @@ namespace DatoveSoubory00
             br.Close();
             fs.Close();
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            FileStream fs = new FileStream("osoby.dat", FileMode.Create, FileAccess.Write);
+
+            BinaryWriter bw = new BinaryWriter(fs);
+          
+
+         
+
+            bw.Write("Petr");
+            bw.Write(78);
+            bw.Write("Pavel");
+            bw.Write(80);
+
+            bw.Write("Patrik");
+            bw.Write(36);
+            fs.Close();
+            listBox3.Items.Clear();
+            fs = new FileStream("osoby.dat", FileMode.Open, FileAccess.Read);
+            BinaryReader br = new BinaryReader(fs);
+
+            while(br.BaseStream.Position < br.BaseStream.Length)
+            {
+                string jmeno = br.ReadString();
+                int hmotnost = br.ReadInt32();
+                listBox3.Items.Add(jmeno + " hmotnost: " + hmotnost + " kg");
+
+
+            }
+            fs.Close();
+
+
+
+
+
+
+
+        }
     }
 }
